@@ -1,0 +1,513 @@
+font: !include
+  file: fonts/fonts.yaml
+  vars:
+    text_sm: 26
+    text_md: 30
+    text_lg: 34
+    text_xl: 48
+    text_xxl: 64
+    icons_sm: 26
+    icons_md: 32
+    icons_lg: 40
+    icons_xl: 48
+    icons_xxl: 56
+
+.sizing:
+  - &nav_widget_vars
+    height: 65
+    padding: 8
+
+  - &page_styles
+    <<: !include styles/page_styles.yaml
+    pad_top: 65
+    pad_bottom: 65
+
+  - &container_styles
+    <<: !include styles/container_styles.yaml
+    pad_top: 0
+    pad_bottom: 0
+    pad_left: 10
+    pad_right: 10
+
+  - &button_layout
+    <<: !include styles/button_layout.yaml
+    pad_column: 10
+    pad_row: 10
+
+  - &button_widget_vars
+    width: 49%
+    height: 100
+
+  - &wide_button_widget_vars
+    width: 100%
+    height: 100
+
+  - &slider_widget_vars
+    width: 100%
+    height: 88
+    pad_top: 25
+    pad_bottom: 25
+
+  - &radio_layout
+    <<: !include styles/radio_layout.yaml
+    pad_row: 15
+
+  - &printer_widget_vars
+    pad_all: 8
+    pad_row: 6
+    bar_height: 8
+    ams_tray_width: 70
+    ams_tray_height: 35
+    ams_tray_padding: 5
+
+script:
+  - id: go_home
+    then:
+      - lvgl.page.show: ${home_page}
+
+lvgl:
+  default_font: roboto_md
+  theme: !include themes/main.yaml
+  top_layer:
+    widgets:
+      - <<: !include { file: widgets/header/widget.yaml, vars: { <<: *nav_widget_vars } }
+      - <<: !include { file: widgets/footer/widget.yaml, vars: { <<: *nav_widget_vars } }
+      - <<: !include { file: widgets/boot_screen/widget.yaml }
+  pages:
+    - id: splash
+      skip: true
+      on_load:
+        - script.execute: go_home
+
+    # Novoletne lucke --------------------------------------------------------------------------------------------------------------
+    - id: pg_novoletne_lucke
+      <<: *page_styles
+      on_load:
+        - lvgl.label.update:
+            id: page_title
+            text: Novoletne lucke
+      widgets:
+        - obj:
+            <<: *container_styles
+            layout:
+              <<: *button_layout
+            widgets:
+              - button: # smrekca
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: smrekca
+                      entity_id: light.smrekca
+                      text: Smrekca
+                      <<: *button_widget_vars
+
+              - button: # spica na smreki
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: spica_na_smreki
+                      entity_id: light.spica_na_smreki
+                      text: Spica na smreki
+                      <<: *button_widget_vars
+
+              - button: # twinkly 1
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: dots_1
+                      entity_id: light.dots_1
+                      text: Twinkly 1
+                      <<: *button_widget_vars
+
+              - button: # twinkly 2
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: dots_2
+                      entity_id: light.dots_2
+                      text: Twinkly 2
+                      <<: *button_widget_vars
+
+              - button: # Kuhinja zvezdno nebo
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/switch_buttons/widget.yaml
+                    vars:
+                      uid: novoletne_lucke_tramovi_kuhinja
+                      entity_id: switch.novoletne_lucke_tramovi_kuhinja
+                      text: Kuhinja zvezdno nebo
+                      <<: *wide_button_widget_vars
+
+              - button: # vrt - ciprese
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/switch_buttons/widget.yaml
+                    vars:
+                      uid: novoletne_lucke_ciprese
+                      entity_id: switch.novoletne_lucke_ciprese
+                      text: Ciprese
+                      <<: *button_widget_vars
+
+              - button: # vrt - drevescka
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/switch_buttons/widget.yaml
+                    vars:
+                      uid: novoletne_lucke_drevescek_poraba_x2
+                      entity_id: switch.novoletne_lucke_drevescek_poraba_x2
+                      text: Drevescka
+                      <<: *button_widget_vars
+
+              - button: # javor
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/switch_buttons/widget.yaml
+                    vars:
+                      uid: zunanja_luc_pri_smetnjakih
+                      entity_id: switch.zunanja_luc_pri_smetnjakih
+                      text: Javor
+                      <<: *button_widget_vars
+
+              - button: # jelencek pri avtu
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/switch_buttons/widget.yaml
+                    vars:
+                      uid: lucke_zunaj_vogal_pri_avtih
+                      entity_id: switch.lucke_zunaj_vogal_pri_avtih
+                      text: Jelencek
+                      <<: *button_widget_vars
+
+              - button: # tinkara Twinkly
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: twinkly_tinkara
+                      entity_id: light.twinkly_tinkara
+                      text: Tinki Twinkly
+                      <<: *button_widget_vars
+
+              - button: # tinkara smrekca
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/switch_buttons/widget.yaml
+                    vars:
+                      uid: lucke_tinkara
+                      entity_id: switch.lucke_tinkara
+                      text: Tinki smrekca
+                      <<: *button_widget_vars
+
+
+
+    # page 2 --------------------------------------------------------------------------------------------------------------
+
+
+    - id: pg_lighting_2
+      <<: *page_styles
+      on_load:
+        - lvgl.label.update:
+            id: page_title
+            text: Luci
+      widgets:
+        - obj:
+            <<: *container_styles
+            layout:
+              <<: *button_layout
+            widgets:
+              - button: # kuhna stranske
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: out_1_stranske_luci
+                      entity_id: light.out_1_stranske_luci
+                      text: Kuhinja stransk.
+                      <<: *button_widget_vars
+
+              - button: # kuhna sredina
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: out_0_sredinske_luci
+                      entity_id: light.out_0_sredinske_luci
+                      text: Kuhinja sredina
+                      <<: *button_widget_vars
+
+              - button: # vhodna vrata
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: luc_pred_vhodom
+                      entity_id: light.luc_pred_vhodom
+                      text: Vhodna vrata
+                      <<: *button_widget_vars
+
+              - button: # na vrtu
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/switch_buttons/widget.yaml
+                    vars:
+                      uid: luci_na_vrtu
+                      entity_id: switch.luci_na_vrtu
+                      text: Na vrtu
+                      <<: *button_widget_vars
+
+    # page 3 --------------------------------------------------------------------------------------------------------------
+
+    - id: jacuzzi
+      <<: *page_styles
+      on_load:
+        - lvgl.label.update:
+            id: page_title
+            text: Jacuzzi
+      widgets:
+        - obj:
+            <<: *container_styles
+            layout:
+              <<: *button_layout
+            widgets:
+              - label:
+                  id: jacuzzi1_water_temperature
+                  height: SIZE_CONTENT
+                  width: 100%
+                  align: TOP_MID
+                  text_align: CENTER
+                  text_font: roboto_xxl
+                  text: "..."
+              - button: # vklop filter
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/custom_buttons/widget.yaml
+                    vars:
+                      uid: jacuzzi1_filter
+                      entity_id: switch.jacuzzi1_filter
+                      text: Filter, pumpa
+                      icon_1: "\U000F1402" #  mdi-pump
+                      icon_0: "\U000F1B22" #  mdi-pump-off
+                      device_type: switch
+                      <<: *button_widget_vars
+              - button: # vklop filter
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/custom_buttons/widget.yaml
+                    vars:
+                      uid: jacuzzi1_heater
+                      entity_id: switch.jacuzzi1_heater
+                      text: Grelec
+                      icon_1: "\U000F1A45" #  mdi-heat-wave
+                      icon_0: "\U000F0717" #  mdi-snowflake
+                      device_type: switch
+                      <<: *button_widget_vars
+
+    # page 4 --------------------------------------------------------------------------------------------------------------
+
+    - id: radio
+      <<: *page_styles
+      on_load:
+        - lvgl.label.update:
+            id: page_title
+            text: Radio dnevna
+      widgets:
+        - obj:
+            <<: *container_styles
+            layout:
+              <<: *radio_layout
+            widgets:
+              - button: # Radio vklop
+                  <<: !include
+                    file: widgets/buttons/icon_text_buttons/custom_buttons/widget.yaml
+                    vars:
+                      uid: radio_dnevna
+                      entity_id: switch.radio_dnevna
+                      text: Radio dnevna vklop
+                      # https://pictogrammers.github.io/@mdi/font/7.4.47/
+                      icon_1: "\U000F101E" #  mdi-cast-audio
+                      icon_0: "\U000F04DB" # stop symbol
+                      device_type: switch
+                      <<: *wide_button_widget_vars
+              - slider: # radio volume
+                  <<: !include
+                    file: widgets/sliders/widget.yaml
+                    vars:
+                      uid: radio_volume
+                      entity_id: number.radio_volume
+                  <<: *slider_widget_vars
+              - obj: # spinbox with - and + buttons
+                  <<: !include
+                    file: widgets/spinbox/widget.yaml
+                    vars:
+                      uid: radio_preset
+                      entity_id: number.radio_preset
+              - label:
+                  id: radio_station
+                  long_mode: wrap
+                  height: SIZE_CONTENT
+                  width: 100%
+                  text: "..."
+
+              - button: # izklopi vse
+                  <<: !include
+                    file: widgets/buttons/text_buttons/stateless.yaml
+                    vars:
+                      uid: izklopi_vse
+                      text: Ugasni vse
+                      <<: *wide_button_widget_vars
+                  align: BOTTOM_MID
+                  on_change:
+                      then:
+                          - homeassistant.action:
+                              action: light.turn_off
+                              data:
+                                  label_id: ugasni_vse
+                          - homeassistant.action:
+                              action: switch.turn_off
+                              data:
+                                  label_id: ugasni_vse
+
+    # end of pages layout --------------------------------------------------------------------------------------------------------------
+
+packages:
+  # header
+  header_sensors: !include { file: widgets/header/sensors.yaml }
+
+  # boot screen
+  boot_screen_sensors: !include { file: widgets/boot_screen/sensors.yaml }
+
+  # Novoletne lucke --------------------------------------------------------------------------------------------------------------
+  smrekca_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml, vars: {
+    uid: smrekca,
+    entity_id: light.smrekca
+  }}
+
+  spica_na_smreki_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml, vars: {
+    uid: spica_na_smreki,
+    entity_id: light.spica_na_smreki
+  }}
+
+  dots_1_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml, vars: {
+    uid: dots_1,
+    entity_id: light.dots_1
+  }}
+
+  dots_2_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml, vars: {
+    uid: dots_2,
+    entity_id: light.dots_2
+  }}
+
+  novoletne_lucke_tramovi_kuhinja_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/switch_buttons/sensors.yaml, vars: {
+    uid: novoletne_lucke_tramovi_kuhinja,
+    entity_id: switch.novoletne_lucke_tramovi_kuhinja
+  }}
+
+  novoletne_lucke_ciprese_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/switch_buttons/sensors.yaml, vars: {
+    uid: novoletne_lucke_ciprese,
+    entity_id: switch.novoletne_lucke_ciprese
+  }}
+
+  novoletne_lucke_drevescek_poraba_x2_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/switch_buttons/sensors.yaml, vars: {
+    uid: novoletne_lucke_drevescek_poraba_x2,
+    entity_id: switch.novoletne_lucke_drevescek_poraba_x2
+  }}
+
+  zunanja_luc_pri_smetnjakih_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/switch_buttons/sensors.yaml, vars: {
+    uid: zunanja_luc_pri_smetnjakih,
+    entity_id: switch.zunanja_luc_pri_smetnjakih
+  }}
+
+  lucke_zunaj_vogal_pri_avtih_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/switch_buttons/sensors.yaml, vars: {
+    uid: lucke_zunaj_vogal_pri_avtih,
+    entity_id: switch.lucke_zunaj_vogal_pri_avtih
+  }}
+
+  twinkly_tinkara_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml, vars: {
+    uid: twinkly_tinkara,
+    entity_id: light.twinkly_tinkara
+  }}
+
+  lucke_tinkara_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/switch_buttons/sensors.yaml, vars: {
+    uid: lucke_tinkara,
+    entity_id: switch.lucke_tinkara
+  }}
+
+
+
+
+
+
+    # page 2 --------------------------------------------------------------------------------------------------------------
+
+  out_1_stranske_luci_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml, vars: {
+    uid: out_1_stranske_luci,
+    entity_id: light.out_1_stranske_luci
+  }}
+
+  out_0_sredinske_luci_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml, vars: {
+    uid: out_0_sredinske_luci,
+    entity_id: light.out_0_sredinske_luci
+  }}
+
+  luc_pred_vhodom_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml, vars: {
+    uid: luc_pred_vhodom,
+    entity_id: light.luc_pred_vhodom
+  }}
+
+  luci_na_vrtu_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/switch_buttons/sensors.yaml, vars: {
+    uid: luci_na_vrtu,
+    entity_id: switch.luci_na_vrtu
+  }}
+
+
+
+
+
+    # page 3 --------------------------------------------------------------------------------------------------------------
+
+  jacuzzi1_filter_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/custom_buttons/sensors.yaml, vars: {
+    uid: jacuzzi1_filter,
+    entity_id: switch.jacuzzi1_filter
+  }}
+
+  jacuzzi1_heater_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/custom_buttons/sensors.yaml, vars: {
+    uid: jacuzzi1_heater,
+    entity_id: switch.jacuzzi1_heater
+  }}
+
+
+
+    # page 4 --------------------------------------------------------------------------------------------------------------
+
+  radio_dnevna_widget_sensors: !include { file: widgets/buttons/icon_text_buttons/custom_buttons/sensors.yaml, vars: {
+    uid: radio_dnevna,
+    entity_id: switch.radio_dnevna
+  }}
+
+  radio_volume_widget_sensors: !include { file: widgets/sliders/sensors.yaml, vars: {
+    uid: radio_volume,
+    entity_id: number.radio_volume
+  }}
+
+  radio_station_num_widget_sensors: !include { file: widgets/spinbox/sensors.yaml, vars: {
+    uid: radio_preset,
+    entity_id: number.radio_preset
+  }}
+
+# other sensor types or custom formatting
+
+    # page 3 --------------------------------------------------------------------------------------------------------------
+
+sensor:
+  - id: jacuzzi1_water_temperature_widget_sensor
+    platform: homeassistant
+    entity_id: sensor.jacuzzi1_water_temperature
+    on_value:
+      - lvgl.label.update:
+          id: jacuzzi1_water_temperature
+          # text: !lambda 'return to_string(x).c_str();' # Convert float value (x) to a string
+          text:
+            format: "%.0f °C"
+            args: ['x']
+
+
+    # page 4 --------------------------------------------------------------------------------------------------------------
+
+text_sensor:
+  - id: radio_station_widget_sensor
+    platform: homeassistant
+    entity_id: text.radio_station
+    on_value:
+      - lvgl.label.update:
+          id: radio_station
+          text: !lambda return x;
+
+
+

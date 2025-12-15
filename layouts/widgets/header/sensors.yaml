@@ -5,7 +5,7 @@ time:
       - lvgl.label.update:
           id: nav_clock
           text:
-            time_format: "%I:%M %p"
+            time_format: "%H:%M"
             time: ha_time
     on_time:
       - minutes: '*'
@@ -14,7 +14,7 @@ time:
           - lvgl.label.update:
               id: nav_clock
               text:
-                time_format: "%I:%M %p"
+                time_format: "%H:%M"
                 time: ha_time
 
 # sensor:

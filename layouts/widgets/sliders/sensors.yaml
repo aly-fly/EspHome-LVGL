@@ -1,0 +1,14 @@
+# required vars:
+# - uid
+# - entity_id
+
+sensor:
+  - id: ${uid}_widget_sensor
+    platform: homeassistant
+    entity_id: ${entity_id}
+    #trigger_on_initial_state: true
+    on_value:
+      - lvgl.slider.update:
+          id: ${uid}
+          value: !lambda return round(x);
+

@@ -1,0 +1,19 @@
+# required vars:
+# - uid
+# - entity_id
+
+
+
+# slider:
+  id: ${uid}
+  # width: defined in slider_widget_vars
+  # height: defined in slider_widget_vars
+  min_value: 0
+  max_value: 100
+
+  on_release:
+    - homeassistant.action:
+        action: number.set_value
+        data:
+          entity_id: ${entity_id}
+          value: !lambda return int(x);

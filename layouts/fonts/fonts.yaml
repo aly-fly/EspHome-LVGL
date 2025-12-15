@@ -34,6 +34,7 @@
     size: ${text_xxl}
     bpp: 4
 
+# https://pictogrammers.github.io/@mdi/font/7.4.47/
   - id: mdi_sm
     file: https://github.com/Pictogrammers/pictogrammers.github.io/raw/refs/heads/main/@mdi/font/7.4.47/fonts/materialdesignicons-webfont.ttf
     size: ${icons_sm}

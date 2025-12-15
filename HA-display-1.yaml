@@ -1,0 +1,20 @@
+esphome:
+  name: ha-display-1
+  friendly_name: HA Display 1 (4.3") (.171)
+
+
+api:
+  encryption:
+    key: !secret ha_display_1_api_key
+
+wifi:
+  manual_ip:
+    static_ip: 10.38.33.171
+
+substitutions:
+  home_page: pg_novoletne_lucke
+
+packages:
+  common: !include layouts/common.yaml
+  device: !include devices/ESP32-8048S043.yaml
+  layout: !include layouts/HA-display-1-800x480.yaml

@@ -1,0 +1,51 @@
+# required vars:
+# - uid
+# - entity_id
+
+  layout:
+    type: FLEX
+    flex_flow: ROW
+    flex_align_cross: CENTER
+  width: 100%
+  height: 100
+  align: CENTER
+  widgets:
+    - button:
+        id: ${uid}_minus
+        width: 30%
+        height: 100%
+        on_click:
+          - lvgl.spinbox.decrement: ${uid}
+        widgets:
+          - label:
+                text: "-"
+                align: CENTER
+    - spinbox:
+        id: ${uid}
+        align: CENTER
+        text_align: CENTER
+        width: 30%
+        height: 100%
+        range_from: 0
+        range_to: 21
+        selected_digit: 0
+        rollover: false
+        digits: 3
+        decimal_places: 0
+        on_value:
+          then:
+            - homeassistant.action:
+                action: number.set_value
+                data:
+                  entity_id: ${entity_id}
+                  value: !lambda return x;
+    - button:
+        id: ${uid}_plus
+        width: 30%
+        height: 100%
+        on_click:
+          - lvgl.spinbox.increment: ${uid}
+        widgets:
+          - label:
+              text: "+"
+              align: CENTER

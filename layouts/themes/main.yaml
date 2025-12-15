@@ -1,8 +1,8 @@
 obj:
-  bg_color: 0x42495A
+  bg_color: 0x043835 # 0x42495A
   text_color: 0xFFFFFF
 button:
-  bg_color: 0x5A6173
+  bg_color: 0x40619C
   border_width: 0
   border_color: 0x00B6FF
   radius: 20
@@ -11,7 +11,7 @@ bar:
   bg_color: 0x111111
   text_color: 0xFFFFFF
 dropdown:
-  bg_color: 0x5A6173
+  bg_color: 0x40619C
   text_color: 0xFFFFFF
   border_color: 0x00B6FF
   border_width: 1
